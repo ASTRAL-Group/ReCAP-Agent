@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Match CAPTCHA</title>
+    <link rel="stylesheet" href="/assets/css/captcha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="captcha-container icon-match-captcha" data-requires-submit="[REQUIRES_SUBMIT]">
+        <div class="captcha-header">
+            <h1 class="captcha-title">Icon Match Challenge</h1>
+            <p class="captcha-subtitle">Drag matching icons together to proceed</p>
+        </div>
+
+        <div class="captcha-instruction">
+            <p class="captcha-instruction-text">
+                Find the two <strong class="target-icon-name">[TARGET_ICON]</strong> icons below.
+                Drag one directly on top of the other to verify.
+            </p>
+        </div>
+
+        <div class="captcha-challenge-area icon-challenge-area">
+            <div class="icon-grid icon-match-grid">
+                [ICON_GRID]
+            </div>
+        </div>
+
+        <div id="message" class="captcha-message"></div>
+
+        <form id="captcha-form" style="display: none;">
+            <input type="hidden" id="challenge-id" name="challenge_id" value="[CHALLENGE_ID]">
+        </form>
+    </div>
+
+    <script src="/assets/js/icon-match-captcha.js"></script>
+</body>
+</html>

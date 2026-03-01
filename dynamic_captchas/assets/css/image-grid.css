@@ -1,0 +1,426 @@
+/* Image Grid Styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', helvetica, arial, sans-serif;
+    font-size: 14px;
+    background: var(--gradient-bg, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: var(--container-bg, #ffffff);
+    border-radius: var(--container-radius, 16px);
+    box-shadow: var(--container-shadow, 0 20px 40px rgba(0, 0, 0, 0.1));
+    padding: var(--container-padding, 40px);
+    width: min(100%, var(--container-max-width, 500px));
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 40px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    overflow: auto;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--top-bar-height, 4px);
+    background: var(--top-bar-gradient, linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c));
+    border-radius: var(--container-radius, 16px) var(--container-radius, 16px) 0 0;
+}
+
+/* Checkbox Section */
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.checkbox-wrapper:hover {
+    background: #e9ecef;
+    border-color: #cbd5e0;
+}
+
+.checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.checkbox:hover {
+    border-color: #4285f4;
+}
+
+.checkbox.checked {
+    background: #4285f4;
+    border-color: #4285f4;
+}
+
+.checkbox.loading {
+    border-color: #4285f4;
+}
+
+.checkbox-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 2px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.checkbox-border-animation {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 2px;
+    border: 2px solid #4285f4;
+    opacity: 0;
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+
+.checkbox.loading .checkbox-border-animation {
+    opacity: 1;
+    transform: scale(1);
+    animation: checkbox-pulse 1.5s infinite;
+}
+
+@keyframes checkbox-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+.checkbox-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #4285f4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.checkbox-spinner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.checkbox-checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 8px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: translate(-50%, -60%) rotate(-45deg);
+}
+
+.checkbox-label {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-img {
+    width: 20px;
+    height: 20px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234285f4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.logo-text {
+    font-weight: 500;
+    color: #4285f4;
+}
+
+.links a {
+    color: #666;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* Challenge Popup */
+.challenge-wrapper {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+    padding: 20px;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.challenge-wrapper.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.challenge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.challenge-wrapper.show .challenge {
+    transform: scale(1);
+}
+
+.challenge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.challenge-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: #e9ecef;
+    color: #333;
+}
+
+.challenge-content {
+    padding: 20px;
+}
+
+.instructions {
+    margin-bottom: 20px;
+}
+
+.instruction-text {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.keyword {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4285f4;
+}
+
+.progress {
+    font-size: 12px;
+    color: #666;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.image-tile {
+    position: relative;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #f8f9fa;
+    border: 1px solid #e2e8f0;
+}
+
+.image-tile:hover {
+    border-color: #4285f4;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+.image-tile.selected {
+    border-color: #4285f4;
+    box-shadow: 0 0 0 2px #4285f4;
+}
+
+.image-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-tile-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(66, 133, 244, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.image-tile.selected .image-tile-overlay {
+    opacity: 1;
+}
+
+.image-tile-checkbox {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: #4285f4;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.image-tile.selected .image-tile-checkbox {
+    display: flex;
+}
+
+.challenge-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verify-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #4285f4;
+    color: white;
+    min-width: 100px;
+}
+
+.verify-btn:hover:not(:disabled) {
+    background: #3367d6;
+}
+
+.verify-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .challenge {
+        width: 95vw;
+        margin: 10px;
+    }
+    
+    .image-grid {
+        gap: 1px;
+    }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact CAPTCHA Challenge</title>
+    <link rel="stylesheet" href="/assets/css/captcha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="captcha-container compact-captcha">
+        <!-- Compact Header -->
+        <div class="captcha-header compact-header">
+            <h2 class="captcha-title compact-title">Security Check</h2>
+        </div>
+
+        <!-- Compact Challenge Area -->
+        <div class="captcha-challenge-area compact-challenge">
+            <!-- CAPTCHA Image -->
+            <div class="captcha-image-container compact-image-container">
+                <img src="/captcha-image/[CAPTCHA_INDEX]" alt="CAPTCHA" class="captcha-image compact-image">
+            </div>
+
+            <!-- Compact Input Section -->
+            <div class="captcha-input-section compact-input-section">
+                <div class="captcha-input-group compact-input-group">
+                    <input 
+                        type="text" 
+                        id="captcha-input" 
+                        class="captcha-input compact-input" 
+                        placeholder="Enter text"
+                        autocomplete="off"
+                        spellcheck="false"
+                        maxlength="8"
+                    >
+                </div>
+
+                <!-- Compact Submit Section -->
+                <div class="captcha-submit-section compact-submit-section">
+                    <button type="button" id="submit-btn" class="captcha-submit-btn compact-submit-btn">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Display -->
+        <div id="message" class="captcha-message compact-message"></div>
+
+        <!-- Hidden Form for Challenge ID -->
+        <form id="captcha-form" style="display: none;">
+            <input type="hidden" id="challenge-id" name="challenge_id" value="[CHALLENGE_ID]">
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/text-captcha.js"></script>
+</body>
+</html>

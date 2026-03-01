@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Slider CAPTCHA Challenge</title>
+    <link rel="stylesheet" href="/assets/css/captcha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="captcha-container slider-captcha" data-requires-submit="PLACEHOLDER_REQUIRES_SUBMIT">
+        <div class="captcha-header">
+            <h1 class="captcha-title">Puzzle Challenge</h1>
+            <p class="captcha-subtitle">Slide the piece to complete the image</p>
+        </div>
+
+        <div class="captcha-instruction">
+            <p class="captcha-instruction-text">
+                Drag the slider handle to move the puzzle piece until it fits perfectly into the highlighted cutout.
+            </p>
+        </div>
+
+        <div class="captcha-challenge-area puzzle-captcha-area">
+            <div
+                class="puzzle-wrapper"
+                id="puzzle-wrapper"
+                data-piece-size="PLACEHOLDER_PIECE_SIZE"
+                data-piece-top="PLACEHOLDER_PIECE_TOP"
+                data-hole-left="PLACEHOLDER_HOLE_LEFT"
+                data-puzzle-width="PLACEHOLDER_PUZZLE_WIDTH"
+                data-puzzle-height="PLACEHOLDER_PUZZLE_HEIGHT"
+                data-background-url="PLACEHOLDER_BACKGROUND_URL"
+                style="--puzzle-width: PLACEHOLDER_PUZZLE_WIDTHpx; --puzzle-height: PLACEHOLDER_PUZZLE_HEIGHTpx; --piece-size: PLACEHOLDER_PIECE_SIZEpx; --piece-top: PLACEHOLDER_PIECE_TOPpx; --hole-left: PLACEHOLDER_HOLE_LEFTpx; --puzzle-image: url('PLACEHOLDER_BACKGROUND_URL');"
+            >
+                <div class="puzzle-scene" id="puzzle-scene">
+                    <div class="puzzle-hole" id="puzzle-hole">
+                        <div class="puzzle-hole-highlight" id="proximity-indicator"></div>
+                    </div>
+                </div>
+                <div class="puzzle-piece" id="puzzle-piece"></div>
+            </div>
+
+            <div class="slider-container puzzle-slider">
+                <div
+                    class="slider-track"
+                    id="slider-track"
+                    data-target-position="PLACEHOLDER_TARGET_POSITION"
+                    data-tolerance="PLACEHOLDER_TOLERANCE"
+                    data-track-width="PLACEHOLDER_TRACK_WIDTH"
+                    data-slider-size="PLACEHOLDER_SLIDER_SIZE"
+                >
+                    <div class="slider-progress" id="slider-progress"></div>
+                    <div class="slider-handle" id="slider-handle">
+                        <span class="handle-icon">➜</span>
+                    </div>
+                </div>
+            </div>
+
+            PLACEHOLDER_SUBMIT_SECTION
+        </div>
+
+        <div id="message" class="captcha-message"></div>
+
+        <div class="captcha-footer">
+            <p class="captcha-footer-text">
+                Protected by <a href="#" class="captcha-footer-link">Dynamic CAPTCHA Server</a>
+            </p>
+        </div>
+
+        <form id="captcha-form" style="display: none;">
+            <input type="hidden" id="challenge-id" name="challenge_id" value="PLACEHOLDER_CHALLENGE_ID">
+            <input type="hidden" id="slider-position" name="slider_position" value="">
+        </form>
+    </div>
+
+    <script src="/assets/js/slider-captcha.js"></script>
+</body>
+</html>

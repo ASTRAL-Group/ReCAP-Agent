@@ -1,0 +1,148 @@
+# =========================
+# OS / Filesystem noise
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+
+# =========================
+# Python caches / bytecode
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Python build / packaging
+# =========================
+.Python
+build/
+dist/
+downloads/
+develop-eggs/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+pip-wheel-metadata/
+*.egg-info/
+*.egg
+.installed.cfg
+MANIFEST
+
+# =========================
+# Test / coverage / tooling
+# =========================
+.pytest_cache/
+.hypothesis/
+.tox/
+.cache
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+nosetests.xml
+*.cover
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.conda/
+.python-version
+
+# =========================
+# Local environment / secrets
+# =========================
+.env
+.env.*
+!.env.example
+local_settings.py
+config_local.py
+
+# =========================
+# Runtime artifacts
+# =========================
+*.log
+logs/
+*/logs/
+runs/
+*/runs/
+results/
+*/results/
+screenshots/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# =========================
+# Data artifacts (downloaded/generated)
+# =========================
+data/
+*/data/
+dynamic_captchas/data/
+
+# =========================
+# Notebook / interactive
+# =========================
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+notebooks/
+
+# =========================
+# Temp files
+# =========================
+*.tmp
+*.temp
+temp/
+tmp/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+.ropeproject
+
+# =========================
+# Framework / docs generated output
+# =========================
+instance/
+.webassets-cache
+.scrapy
+db.sqlite3
+db.sqlite3-journal
+celerybeat-schedule
+celerybeat.pid
+docs/_build/
+target/
+site/
+
+# =========================
+# Project-specific local files
+# =========================
+opik.db

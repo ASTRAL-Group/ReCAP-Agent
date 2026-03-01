@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[CHALLENGE_TITLE]</title>
+    <link rel="stylesheet" href="/assets/css/captcha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: var(--gradient-bg, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .paged-captcha,
+        .icon-slider-captcha {
+            width: min(100%, 520px);
+        }
+        .icon-slider-area {
+            width: 100%;
+            max-width: 450px;
+            gap: 16px;
+            margin: 0 auto;
+        }
+        .slider-controls {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 14px;
+            align-items: center;
+            width: 100%;
+        }
+        .nav-arrow {
+            width: var(--nav-size, 46px);
+            height: var(--nav-size, 46px);
+            border-radius: 50%;
+            border: none;
+            background: var(--button-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+        .nav-arrow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px rgba(0, 0, 0, 0.18);
+        }
+        .nav-arrow:active {
+            transform: translateY(0);
+        }
+        .card-viewport {
+            position: relative;
+            width: var(--card-width, 260px);
+            height: var(--card-height, 170px);
+            margin: 0 auto;
+            border-radius: var(--card-radius, 16px);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 18px 34px rgba(15, 23, 42, 0.14);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.1));
+        }
+        .icon-card {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .icon-card.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+        .icon-card-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px;
+            box-sizing: border-box;
+            height: 100%;
+            text-align: center;
+        }
+        .card-visual {
+            width: 100%;
+            height: 100%;
+            max-width: 230px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .card-visual-icon {
+            min-height: 0;
+        }
+        .card-visual-icon i {
+            font-size: 64px;
+            line-height: 1;
+        }
+        .card-visual-image {
+            width: 100%;
+            height: 100%;
+        }
+        .card-visual-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 14px;
+            filter: saturate(1.02);
+        }
+        .card-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .card-dot {
+            width: var(--dot-size, 10px);
+            height: var(--dot-size, 10px);
+            border-radius: 12px;
+            border: 2px solid var(--accent-color, #4ecdc4);
+            background: #ffffff;
+            opacity: 0.7;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+        .card-dot.active {
+            width: var(--dot-active-size, 24px);
+            background: var(--accent-color, #4ecdc4);
+            border-color: var(--primary-color, #667eea);
+            opacity: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        }
+        .captcha-submit-section {
+            margin-top: 12px;
+        }
+        @media (max-width: 640px) {
+            .slider-controls {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .card-viewport {
+                width: min(100%, 90vw);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="captcha-container paged-captcha" data-requires-submit="[REQUIRES_SUBMIT]" data-mode="[CAPTCHA_MODE]">
+        <!-- Header Section -->
+        <div class="captcha-header">
+            <h1 class="captcha-title">[CHALLENGE_TITLE]</h1>
+            <p class="captcha-subtitle">[CHALLENGE_SUBTITLE]</p>
+        </div>
+
+        <!-- Instruction Section -->
+        <div class="captcha-instruction">
+            <p class="captcha-instruction-text">
+                [INSTRUCTION_TEXT]
+            </p>
+        </div>
+
+        <!-- Slider Area -->
+        <div class="captcha-challenge-area icon-slider-area">
+            <div class="slider-controls">
+                <button class="nav-arrow nav-left" type="button" aria-label="Previous card"><span aria-hidden="true">&lt;</span></button>
+                <div class="card-viewport" id="card-viewport">
+                    [CARD_ITEMS]
+                </div>
+                <button class="nav-arrow nav-right" type="button" aria-label="Next card"><span aria-hidden="true">&gt;</span></button>
+            </div>
+
+            <div class="card-dots" id="card-dots">
+                [DOT_ITEMS]
+            </div>
+
+            <div class="captcha-submit-section">
+                <button type="button" id="submit-btn" class="captcha-submit-btn" disabled>Submit</button>
+            </div>
+        </div>
+
+        <!-- Message Display -->
+        <div id="message" class="captcha-message"></div>
+
+        <!-- Hidden Form for Challenge ID -->
+        <form id="captcha-form" style="display: none;">
+            <input type="hidden" id="challenge-id" name="challenge_id" value="[CHALLENGE_ID]">
+            <input type="hidden" id="current-index" name="current_index" value="0">
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/icon-slider-captcha.js"></script>
+</body>
+</html>

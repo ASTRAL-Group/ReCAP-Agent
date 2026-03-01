@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Grid</title>
+    <link rel="stylesheet" href="/assets/css/image-grid.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Checkbox Section -->
+        <div class="checkbox-container">
+            <div class="checkbox-wrapper">
+                <div class="checkbox" id="checkbox" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="checkbox-border"></div>
+                    <div class="checkbox-border-animation"></div>
+                    <div class="checkbox-spinner" style="display: none;">
+                        <div class="checkbox-spinner-overlay"></div>
+                    </div>
+                    <div class="checkbox-checkmark" style="display: none;"></div>
+                </div>
+                <label class="checkbox-label" for="checkbox">
+                    I'm not a robot
+                </label>
+            </div>
+            <div class="footer">
+                <div class="logo">
+                    <div class="logo-img"></div>
+                    <div class="logo-text">Image Grid</div>
+                </div>
+                <div class="links">
+                    <a href="#" target="_blank">Privacy</a>
+                    <span> - </span>
+                    <a href="#" target="_blank">Terms</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Challenge Popup -->
+        <div class="challenge-wrapper" id="challenge-wrapper" style="display: none;">
+            <div class="challenge" id="challenge">
+                <div class="challenge-header">
+                    <div class="challenge-title">Image Grid</div>
+                    <button class="close-btn" id="close-challenge">×</button>
+                </div>
+                
+                <div class="challenge-content">
+                    <div class="instructions">
+                        <div class="instruction-text">
+                            Select all squares with <strong class="keyword" id="challenge-keyword">[INSTRUCTION]</strong>
+                        </div>
+                        <div class="progress">
+                            <span class="progress-text">Click verify once there are none left.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="image-grid" id="image-grid">
+                        <!-- 3x3 grid will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="challenge-footer">
+                        <button class="verify-btn" id="verify-btn">Verify</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Form for Challenge ID -->
+    <form id="captcha-form" style="display: none;">
+        <input type="hidden" id="challenge-id" name="challenge_id" value="[CHALLENGE_ID]">
+        <input type="hidden" id="selected-tiles" name="selected_tiles" value="[]">
+    </form>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/image-grid-captcha.js"></script>
+</body>
+</html>

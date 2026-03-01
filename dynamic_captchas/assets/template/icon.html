@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Selection CAPTCHA</title>
+    <link rel="stylesheet" href="/assets/css/captcha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="captcha-container icon-captcha" data-requires-submit="[REQUIRES_SUBMIT]">
+        <!-- Header Section -->
+        <div class="captcha-header">
+            <h1 class="captcha-title">Icon Selection Challenge</h1>
+            <p class="captcha-subtitle">Click on the requested icon to verify</p>
+        </div>
+
+        <!-- Instruction Section -->
+        <div class="captcha-instruction">
+            <p class="captcha-instruction-text">
+                Please click on the <strong class="target-icon-name">[TARGET_ICON]</strong> icon below.
+            </p>
+        </div>
+
+        <!-- Icon Selection Area -->
+        <div class="captcha-challenge-area icon-challenge-area">
+            <div class="icon-grid">
+                <!-- Icons will be dynamically generated here -->
+                [ICON_GRID]
+            </div>
+            
+            <!-- Submit Section -->
+            [SUBMIT_SECTION]
+        </div>
+
+        <!-- Message Display -->
+        <div id="message" class="captcha-message"></div>
+
+        <!-- Hidden Form for Challenge ID -->
+        <form id="captcha-form" style="display: none;">
+            <input type="hidden" id="challenge-id" name="challenge_id" value="[CHALLENGE_ID]">
+            <input type="hidden" id="selected-icon" name="selected_icon" value="">
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/icon-captcha.js"></script>
+</body>
+</html>

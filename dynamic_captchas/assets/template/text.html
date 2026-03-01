@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA Challenge - Security Verification</title>
+    <link rel="stylesheet" href="/assets/css/captcha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="captcha-container">
+        <!-- Header Section -->
+        <div class="captcha-header">
+            <h1 class="captcha-title">Security Verification</h1>
+            <p class="captcha-subtitle">Complete the challenge below to continue</p>
+        </div>
+
+        <!-- Instruction Section -->
+        <div class="captcha-instruction">
+            <p class="captcha-instruction-text">
+                Enter the text in the image below to solve the CAPTCHA
+            </p>
+        </div>
+
+        <!-- Challenge Area -->
+        <div class="captcha-challenge-area">
+            <!-- CAPTCHA Image -->
+            <div class="captcha-image-container">
+                <img src="/captcha-image/[CAPTCHA_INDEX]" alt="CAPTCHA Challenge" class="captcha-image">
+            </div>
+
+            <!-- Input Section -->
+            <div class="captcha-input-section">
+                <div class="captcha-input-group">
+                    <input 
+                        type="text" 
+                        id="captcha-input" 
+                        class="captcha-input" 
+                        placeholder="Enter the text you see"
+                        autocomplete="off"
+                        spellcheck="false"
+                        maxlength="10"
+                    >
+                </div>
+
+                <!-- Submit Section -->
+                <div class="captcha-submit-section">
+                    <button type="button" id="submit-btn" class="captcha-submit-btn">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Display -->
+        <div id="message" class="captcha-message"></div>
+
+        <!-- Footer -->
+        <div class="captcha-footer">
+            <p class="captcha-footer-text">
+                Protected by <a href="#" class="captcha-footer-link">Dynamic CAPTCHA Server</a>
+            </p>
+        </div>
+
+        <!-- Hidden Form for Challenge ID -->
+        <form id="captcha-form" style="display: none;">
+            <input type="hidden" id="challenge-id" name="challenge_id" value="[CHALLENGE_ID]">
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/text-captcha.js"></script>
+</body>
+</html>
