@@ -3,9 +3,11 @@
 # CAPTCHA-Capable GUI Agent
 
 [![Project](https://img.shields.io/badge/arxiv-pending-red)](#)
-![Dataset](https://img.shields.io/badge/huggingface-pending-orange?logo=huggingface&logoColor=yellow)
+![Model Release](https://img.shields.io/badge/model-pending-lightgrey?logo=huggingface&logoColor=yellow)
+![Dataset](https://img.shields.io/badge/dataset-pending-lightgrey?logo=huggingface&logoColor=yellow)
 ![Status](https://img.shields.io/badge/python-3.11+-blue)
 ![Lisence](https://img.shields.io/badge/Lisense-MIT-orange)
+
 
 
 </div>
@@ -16,6 +18,12 @@ It combines:
 - real-world/static CAPTCHA benchmarks,
 - a unified evaluation framework across providers and model families,
 - and (incoming) trace generation pipelines.
+
+## Contributions
+
+- A dynamic CAPTCHA suite with seven interactive types to stress GUI agents.
+- A unified evaluation framework that benchmarks across providers and model families with reproducible runs.
+- A trace generation pipeline that produces reasoning-action and self-correction supervision for training.
 
 ## Motivation
 
