@@ -1,78 +1,73 @@
+<p align="center">
+  <img src="./images/logo.png" alt="logo image" width="40%" />
+</p>
+
 <div align="center">
 
-# CAPTCHA-Capable GUI Agent
+# ReCAP-Agent
+
+### Training and evaluating CAPTCHA-capable GUI agents
 
 [![Project](https://img.shields.io/badge/arxiv-pending-red)](#)
-![Model Release](https://img.shields.io/badge/model-pending-lightgrey?logo=huggingface&logoColor=yellow)
-![Dataset](https://img.shields.io/badge/dataset-pending-lightgrey?logo=huggingface&logoColor=yellow)
-![Status](https://img.shields.io/badge/python-3.11+-blue)
-![Lisence](https://img.shields.io/badge/Lisense-MIT-orange)
+[![Model](https://img.shields.io/badge/model-d4a017?logo=huggingface&logoColor=ffd21e)](https://huggingface.co/ReCAP-Agent)
+[![Dataset](https://img.shields.io/badge/dataset-d4a017?logo=huggingface&logoColor=ffd21e)](https://huggingface.co/datasets/ReCAP-Agent/ReCAP-187k-SFT)
+![License](https://img.shields.io/badge/License-MIT-orange)
 
+Dynamic CAPTCHA generation, CAPTCHA benchmarks, unified evaluation framework, and trace generation pipelines for reasoning-action supervision.
 
+[Quick Start](#quick-start) • [Components](#components) 
 
 </div>
 
-This repository contains the main artifacts for our paper on training stronger CAPTCHA-capable GUI agents (ReCAP).
-It combines:
-- dynamic CAPTCHA generation,
-- real-world/static CAPTCHA benchmarks,
-- a unified evaluation framework across providers and model families,
-- and (incoming) trace generation pipelines.
 
-## Contributions
+## Why ReCAP-Agent
 
-- A dynamic CAPTCHA suite with seven interactive types to stress GUI agents.
-- A unified evaluation framework that benchmarks across providers and model families with reproducible runs.
-- A trace generation pipeline that produces reasoning-action and self-correction supervision for training.
+Modern GUI agents can navigate websites, apps, and interfaces, but CAPTCHAs still break many real workflows. ReCAP-Agent is a practical stack for studying that failure mode end to end: generate CAPTCHA tasks, benchmark agents against them, and convert runs into training traces that support better reasoning and recovery behavior.
 
-## Motivation
+This repository brings together:
 
-Modern GUI/web agents are often blocked by CAPTCHA gates in real workflows.
-This project provides a practical stack to:
-- build and serve diverse CAPTCHA tasks,
-- benchmark agent performance in a reproducible way,
-- and generate reasoning-action plus self-correction supervision traces for improved training.
+- dynamic CAPTCHA environment and benchmark with diverse interaction patterns;
+- static real-world CAPTCHA benchmarks (contributed by [Teoh et al.](https://halligan.pages.dev));
+- direct reasoning-action trace generation;
+- self-correction trace generation from failed attempts;
+- cross-provider evaluation for multiple model families.
 
-Concretely, the project follows the ReCAP setup: a CAPTCHA-capable native GUI agent trained with automated reasoning-action data generation and corrective traces from failed attempts. The dynamic CAPTCHA system covers seven representative interactive types (`text`, `compact text`, `icon match`, `icon selection`, `paged`, `slider`, `image grid`) to encourage transfer across diverse layouts and interaction patterns.
 
 ## Components
 
-1. `dynamic_captchas/`  
-   Designed and benchmarked dynamic CAPTCHAs used in this project.
-   See [Dynamic CAPTCHAs Documentation](./dynamic_captchas/README.md) for more details on the CAPTCHA types, server setup, and evaluation usage.
+| Module | Purpose |
+| --- | --- |
+| [`dynamic_captchas/`](./dynamic_captchas/README.md) | Dynamically generated CAPTCHA tasks used to probe transfer across layouts and interaction styles. |
+| [`halligan_captchas/`](./halligan_captchas/README.md) | Static benchmark set based on real-world CAPTCHAs, contributed by [Teoh et al.](https://halligan.pages.dev) Included here for convenient local evaluation. |
+| [`captcha_eval_framework/`](./captcha_eval_framework/README.md) | Unified benchmarking framework for running GUI agents across providers and model families. |
+| [`trace_generation/`](./trace_generation/README.md) | Pipelines for generating direct traces, self-correction traces, and model-specific training data formats. |
 
-2. `halligan_captchas/`  
-   This CAPTCHA challenge set is part of the paper ["Are CAPTCHAs Still Bot-hard? Generalized Visual CAPTCHA Solving with Agentic Vision Language Model"](https://www.usenix.org/conference/usenixsecurity25/presentation/teoh) and copied into this repository for ease of access. See [Halligan CAPTCHAs Documentation](./halligan_captchas/README.md) for details on the benchmark setup, CAPTCHA types, and evaluation usage.
+## CAPTCHA Coverage
 
-3. `captcha_eval_framework/`  
-   Unified platform for evaluating different CAPTCHA providers with different model backbones. See [CAPTCHA Evaluation Framework](./captcha_eval_framework/README.md) for details on configuration, usage, and reproducibility best practices.
+The dynamic CAPTCHA system covers seven representative interactive types:
 
-4. `trace_generation/` (Incoming)  
-   Pipelines for generating reasoning-action trajectories and self-correction traces from evaluation runs. This module will include scripts to process successful and failed runs, extract relevant data, and format it for training supervision.
+- `text`
+- `compact_text`
+- `icon_match`
+- `icon_selection`
+- `paged`
+- `slider`
+- `image_grid`
 
-### Project Layout
+These tasks collectively target four broad capabilities shown above:
 
-```text
-captcha-capable-gui-agent/
-├── dynamic_captchas/
-├── halligan_captchas/
-├── captcha_eval_framework/
-├── trace_generation/
-└── README.md
-```
+- optical character recognition,
+- continuous control,
+- spatial localization, and
+- visual-semantic comprehension.
 
-## End-to-End Workflow
-
-1. Run a CAPTCHA provider server.
-2. Configure provider URL(s) and model API settings in the evaluation framework.
-3. Execute benchmark runs with selected provider, test mode, and model family.
-4. Generate/collect reasoning-action trajectories (successful and failed).
-5. Build self-correction traces from failed runs (incoming module).
-6. Compare runs with `runs/<timestamp>/` artifacts and iterate on training/evaluation.
+<p align="center">
+  <img src="./images/ReCAP_captchas.png" alt="Overview of ReCAP CAPTCHA challenge types across OCR, dragging, clicking, and semantic understanding" width="100%" />
+</p>
 
 ## Quick Start
 
-1. Start Dynamic CAPTCHA server:
+### 1. Start the Dynamic CAPTCHA server
 
 ```bash
 cd dynamic_captchas
@@ -81,7 +76,7 @@ python download_datasets.py
 python app.py
 ```
 
-2. Start Halligan benchmark server
+### 2. Optional: start the Halligan benchmark server
 
 ```bash
 cd halligan_captchas
@@ -90,7 +85,7 @@ conda activate halligan-benchmark
 python server.py
 ```
 
-3. Run evaluation:
+### 3. Run the unified evaluation framework
 
 ```bash
 cd captcha_eval_framework
@@ -99,22 +94,46 @@ cp .env.example .env
 python3 ./main.py --provider dynamic --test-mode once --model-family qwen3
 ```
 
-Please refer to the respective component READMEs for more detailed instructions, configuration options, and troubleshooting tips.
+### 4. Generate traces for training
+
+```bash
+cd ..
+pip install -r captcha_eval_framework/requirements.txt
+python -m playwright install chromium
+python -m trace_generation direct
+python -m trace_generation self-correction
+python -m trace_generation convert
+```
+
+For setup details, environment variables, and advanced usage, refer to the component READMEs linked above.
+
+## Repository Layout
+
+```text
+ReCAP-Agent/
+├── dynamic_captchas/
+├── halligan_captchas/
+├── captcha_eval_framework/
+├── trace_generation/
+├── images/
+└── README.md
+```
 
 ## Roadmap
 
 - [x] Dynamic CAPTCHA generation and verification server
 - [x] Static benchmark integration
 - [x] Unified cross-provider evaluation framework
-- [ ] Trace generation module (regular + self-correction traces)
+- [x] Trace generation module with direct and self-correction traces
 
 ## Contributing
 
-Contributions to this project are welcome! Please follow these steps:
-1. Fork the repository and create a new branch for your feature or bug fix.
-2. Make your changes and commit them with clear messages.
-3. Push your changes to your forked repository.
-4. Open a pull request to the main repository with a detailed description of your changes.
+Contributions are welcome.
+
+1. Fork the repository and create a branch for your change.
+2. Make the change with clear commits and any necessary documentation updates.
+3. Push your branch and open a pull request describing the motivation and behavior change.
 
 ## License
+
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

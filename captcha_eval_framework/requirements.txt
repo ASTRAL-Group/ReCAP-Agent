@@ -2,3 +2,4 @@ openai
 playwright
 Pillow
 tqdm
+requests

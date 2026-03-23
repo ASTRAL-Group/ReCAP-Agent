@@ -1,4 +1,10 @@
-BASE_URL = "http://localhost:5000"
+import os
+
+
+BASE_URL = os.getenv(
+    "DYNAMIC_PROVIDER_URL",
+    os.getenv("DYNAMIC_CAPTCHA_BASE_URL", "http://localhost:5000"),
+).rstrip("/")
 
 CHALLENGE_ROUTES = {
     "text": "/challenge/text",

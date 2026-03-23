@@ -1,4 +1,5 @@
 import logging
+import os
 import traceback
 from flask import Flask, Response, request, jsonify
 from apis.amazon import amazon
@@ -20,7 +21,8 @@ file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
 results = logging.getLogger('results')
 results.setLevel(logging.INFO)
-results.addHandler(file_handler)
+if not results.handlers:
+    results.addHandler(file_handler)
 
 
 app: Flask = Flask(__name__)
@@ -31,9 +33,10 @@ def health():
 
 @app.after_request
 def after_request(response: Response):
-    if response.json and "solved" in response.json:
-        id = response.json.get("id")
-        solved = response.json.get("solved")
+    payload = response.get_json(silent=True) if response.is_json else None
+    if payload and "solved" in payload:
+        id = payload.get("id")
+        solved = payload.get("solved")
         results.info(f"Route: {request.base_url}, ID: {id}, Solved: {solved}")
         print(solved)
     return response
@@ -57,4 +60,7 @@ app.register_blueprint(yandex, url_prefix="/yandex")
 app.register_error_handler(Exception, handle_exception)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3334, debug=True)
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", "3334"))
+    debug = os.environ.get("FLASK_DEBUG", "").lower() in {"1", "true", "yes", "on"}
+    app.run(host=host, port=port, debug=debug)

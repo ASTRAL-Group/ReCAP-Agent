@@ -10,17 +10,24 @@ from server import create_app
 app = create_app()
 
 
+def _env_flag(name: str) -> bool:
+    return os.environ.get(name, "").lower() in {"1", "true", "yes", "on"}
+
+
 if __name__ == "__main__":
-    dataset_size = app.config.get("DATASET_SIZE", 0)
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", "5000"))
+    local_base = f"http://localhost:{port}"
+
     print("Starting Flask application...\n")
     print("Available CAPTCHA types:")
-    print("  • Random: http://localhost:5000/challenge")
-    print("  • Text: http://localhost:5000/challenge/text")
-    print("  • Compact: http://localhost:5000/challenge/compact")
-    print("  • Icon Selection: http://localhost:5000/challenge/icon")
-    print("  • Paged: http://localhost:5000/challenge/paged")
-    print("  • Icon Match: http://localhost:5000/challenge/icon-match")
-    print("  • Slider: http://localhost:5000/challenge/slider")
-    print("  • Image Grid: http://localhost:5000/challenge/image_grid")
-    debug_mode = os.environ.get("FLASK_DEBUG", "").lower() in {"1", "true", "yes", "on"}
-    app.run(debug=debug_mode, host="0.0.0.0", port=5000)
+    print(f"  • Random: {local_base}/challenge")
+    print(f"  • Text: {local_base}/challenge/text")
+    print(f"  • Compact: {local_base}/challenge/compact")
+    print(f"  • Icon Selection: {local_base}/challenge/icon")
+    print(f"  • Paged: {local_base}/challenge/paged")
+    print(f"  • Icon Match: {local_base}/challenge/icon-match")
+    print(f"  • Slider: {local_base}/challenge/slider")
+    print(f"  • Image Grid: {local_base}/challenge/image_grid")
+
+    app.run(debug=_env_flag("FLASK_DEBUG"), host=host, port=port)
