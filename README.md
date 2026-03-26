@@ -4,7 +4,7 @@
 
 <div align="center">
 
-# ReCAP-Agent
+# ReCAP Agent
 
 ### Training and evaluating CAPTCHA-capable GUI agents
 
