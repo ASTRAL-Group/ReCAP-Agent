@@ -8,7 +8,7 @@
 
 ### Training and evaluating CAPTCHA-capable GUI agents
 
-[![Project](https://img.shields.io/badge/arxiv-pending-red)](#)
+[![Project](https://img.shields.io/badge/arxiv-2603.23559-red)](https://arxiv.org/abs/2603.23559)
 [![Model](https://img.shields.io/badge/model-d4a017?logo=huggingface&logoColor=ffd21e)](https://huggingface.co/ReCAP-Agent)
 [![Dataset](https://img.shields.io/badge/dataset-d4a017?logo=huggingface&logoColor=ffd21e)](https://huggingface.co/datasets/ReCAP-Agent/ReCAP-187k-SFT)
 ![License](https://img.shields.io/badge/License-MIT-orange)
